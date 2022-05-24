@@ -70,6 +70,7 @@ RegisterNetEvent('qb-mdt:client:TakeOutImpound', function(data)
         local vehicle = data.vehicle
         TakeOutImpound(data)
     else
-        QBCore.Functions.Notify("You are too far away from the impound location!")
+        --QBCore.Functions.Notify("You are too far away from the impound location!")
+		exports['okokNotify']:Alert('Too Far Away', 'You are too far away from the impound location', 1500, 'warning')
     end
 end)

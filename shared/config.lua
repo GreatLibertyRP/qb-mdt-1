@@ -1,13 +1,13 @@
 Config = Config or {}
 
 Config.RosterLink = {
-    ['police'] = '',
+    ['police'] = 'https://docs.google.com/spreadsheets/d/18dc8l2FRvcxyDQDsNbtXLv8_iQxiRUMYBQYHCb5qGUY/edit?usp=sharing',
     ['ambulance'] = '',
     ['bcso'] = '',
     ['doj'] = '',
 }
 
-Config.Fuel = "lj-fuel" -- "LegacyFuel", "lj-fuel"
+Config.Fuel = "LegacyFuel" -- "LegacyFuel", "lj-fuel"
 
 Config.PenalCodeTitles = {
     [1] = 'OFFENSES AGAINST PERSONS',

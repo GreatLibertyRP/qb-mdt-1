@@ -361,7 +361,8 @@ RegisterNUICallback('SetHouseLocation', function(data, cb)
         coords[#coords+1] = tonumber(word)
     end
     SetNewWaypoint(coords[1], coords[2])
-    QBCore.Functions.Notify('GPS has been set!', 'success')
+    --QBCore.Functions.Notify('GPS has been set!', 'success')
+    exports['okokNotify']:Alert('GPS', 'GPS has been set!', 1500, 'success')
 end)
 
 --====================================================================================
@@ -553,7 +554,8 @@ RegisterNUICallback("saveVehicleInfo", function(data, cb)
             end
 
             if found == 0 then
-                QBCore.Functions.Notify('Vehicle not found!', 'error')
+                --QBCore.Functions.Notify('Vehicle not found!', 'error')
+                exports['okokNotify']:Alert('Vehicle not found!', 'Couldn\'t Find Vehicle.', 2500, 'warning')
                 SendNUIMessage({ type = "redImpound" })
             end
         else
@@ -639,9 +641,11 @@ RegisterNetEvent('mdt:client:setRadio', function(radio)
     if type(tonumber(radio)) == "number" then
         exports["pma-voice"]:setVoiceProperty("radioEnabled", true)
         exports["pma-voice"]:setRadioChannel(tonumber(radio))
-        QBCore.Functions.Notify("You have set your radio frequency to "..radio..".", "success")
+        --QBCore.Functions.Notify("You have set your radio frequency to "..radio..".", "success")
+        exports['okokNotify']:Alert('Radio Frequency', 'You have set your radio frquency to '..radio..'.', 1500, 'success')
     else
-        QBCore.Functions.Notify("Invalid Station(Please enter a number)", "error")
+        --QBCore.Functions.Notify("Invalid Station(Please enter a number)", "error")
+        exports['okokNotify']:Alert('Invalid Station', 'Invalid(Please enter a number)', 1500, 'error')
     end
 end)
 

@@ -1140,14 +1140,16 @@ RegisterNetEvent('mdt:server:setRadio', function(cid, newRadio)
 	local src = source
 	local Player = QBCore.Functions.GetPlayer(src)
 	if Player.PlayerData.citizenid ~= cid then
-		TriggerClientEvent("QBCore:Notify", src, 'You can only change your radio!', 'error')
+		--TriggerClientEvent("QBCore:Notify", src, 'You can only change your radio!', 'error')
+		TriggerClientEvent('okokNotify:Alert', src, 'Radio', 'You can only change your radio!', 2500, 'error')
 		return
 	else
 		local radio = Player.Functions.GetItemByName("phone")
 		if radio ~= nil then
 			TriggerClientEvent('mdt:client:setRadio', src, newRadio)
 		else
-			TriggerClientEvent("QBCore:Notify", src, 'You do not have a radio!', 'error')
+			--TriggerClientEvent("QBCore:Notify", src, 'You do not have a radio!', 'error')
+			TriggerClientEvent('okokNotify:Alert', src, 'Missing Item', 'You do not have a radio!', 1500, 'error')
 		end
 	end
 
@@ -1263,3 +1265,19 @@ function GetVehicleInformation(plate)
         return false
     end
 end
+
+QBCore.Functions.CreateUseableItem("mdt", function(source, item)
+	local job = {
+		'police',
+		'ambulance'
+	}
+	local src = source
+	local Player = QBCore.Functions.GetPlayer(src)
+	if Player.Functions.GetItemByName(item.name) ~= nil then
+		if Player.PlayerData.job.name ~= nil then
+			if Player.PlayerData.job.name == job then
+				TriggerClientEvent('mdt:server:openMDT')
+			end
+		end
+	end
+end)
